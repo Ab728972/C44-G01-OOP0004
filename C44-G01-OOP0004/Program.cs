@@ -98,5 +98,35 @@
             }
         }
         #endregion
+        #region Part 2 - Question 3 (INotificationService)
+        public interface INotificationService
+        {
+            void SendNotification(string recipient, string message);
+        }
+
+        public class EmailNotificationService : INotificationService
+        {
+            public void SendNotification(string recipient, string message)
+            {
+                Console.WriteLine($"Email to {recipient}: {message}");
+            }
+        }
+
+        public class SmsNotificationService : INotificationService
+        {
+            public void SendNotification(string recipient, string message)
+            {
+                Console.WriteLine($"SMS to {recipient}: {message}");
+            }
+        }
+
+        public class PushNotificationService : INotificationService
+        {
+            public void SendNotification(string recipient, string message)
+            {
+                Console.WriteLine($"Push notification to {recipient}: {message}");
+            }
+        }
+        #endregion
     }
 }
