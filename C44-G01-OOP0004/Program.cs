@@ -64,6 +64,39 @@
             }
         }
         #endregion
+        #region Part 2 - Question 2 (IAuthenticationService)
+        public interface IAuthenticationService
+        {
+            bool AuthenticateUser(string username, string password);
+            bool AuthorizeUser(string username, string role);
+        }
 
+        public class BasicAuthenticationService : IAuthenticationService
+        {
+            private Dictionary<string, string> _userCredentials = new()
+        {
+            { "admin", "admin123" },
+            { "user", "user123" }
+        };
+
+            private Dictionary<string, string> _userRoles = new()
+        {
+            { "admin", "Administrator" },
+            { "user", "User" }
+        };
+
+            public bool AuthenticateUser(string username, string password)
+            {
+                return _userCredentials.TryGetValue(username, out var storedPassword)
+                    && password == storedPassword;
+            }
+
+            public bool AuthorizeUser(string username, string role)
+            {
+                return _userRoles.TryGetValue(username, out var userRole)
+                    && userRole == role;
+            }
+        }
+        #endregion
     }
 }
