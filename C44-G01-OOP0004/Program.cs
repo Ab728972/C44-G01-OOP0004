@@ -4,7 +4,25 @@
     {
         static void Main(string[] args)
         {
-            
+            // Test Question 1
+            ICircle circle = new Circle { Radius = 5 };
+            IRectangle rectangle = new Rectangle { Length = 4, Width = 6 };
+            circle.DisplayShapeInfo();
+            rectangle.DisplayShapeInfo();
+
+            // Test Question 2
+            IAuthenticationService authService = new BasicAuthenticationService();
+            Console.WriteLine(authService.AuthenticateUser("admin", "admin123"));
+            Console.WriteLine(authService.AuthorizeUser("admin", "Administrator"));
+
+            // Test Question 3
+            INotificationService emailService = new EmailNotificationService();
+            INotificationService smsService = new SmsNotificationService();
+            INotificationService pushService = new PushNotificationService();
+
+            emailService.SendNotification("user@example.com", "Hello via Email");
+            smsService.SendNotification("+123456789", "Hello via SMS");
+            pushService.SendNotification("device123", "Hello via Push");
         }
         #region Part 1 - Multiple Choice Questions Answers
         /*
@@ -128,5 +146,6 @@
             }
         }
         #endregion
+
     }
 }
